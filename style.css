@@ -1,0 +1,386 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+    background: #fdfdfd;
+}
+
+
+
+.patientsList {
+    width: 80%;
+    margin: 50px auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    gap: 60px ;
+
+}
+
+ h2 {
+    color: #444;
+}
+
+.patientCard {
+    width: 320px;
+    height: auto;
+    position: relative;
+    padding: 5px;
+    box-shadow: 2px 2px 20px #0002;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: start;
+}
+
+.marker {
+    position: absolute;
+    top: 0;
+    right: -30px;
+    width: 30px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+    color: white;
+    background: #7b57ff;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.int {
+    background: #62a95a;
+}
+
+.pulse {
+
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+
+
+    30% {
+        background: #ff2d11;
+    }
+
+    70% {
+        background: #ff2d11;
+    }
+
+}
+
+.cardData {
+    width: 40%;
+
+    display: inline-block;
+}
+
+.patientCard input {
+    width: 100%;
+    border: none;
+    padding: 3px;
+    text-transform: capitalize;
+    outline: none;
+    color: #333;
+    font-weight: 500;
+}
+
+.patientCard input::placeholder {
+    color: #bbb;
+    font-weight: normal;
+}
+
+#name {
+    width: 100%;
+    margin: 0;
+    font-size: 15px;
+}
+
+textarea {
+    width: 60%;
+    padding: 3px;
+    outline: none;
+    border-radius: 5px;
+    resize: none;
+    border: none;
+    color: #777;
+    background: #f6f6f6;
+    font-size: 13px;
+}
+
+.cardButtons {
+    margin: 10px 0 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.cardButtons button {
+    background: #7b57ff;
+    background: #aaa;
+    color: #fdfdfd;
+    border: none;
+    width: 70px;
+    height: 27px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.cardButtons button:hover {
+    background: #9173ff;
+    transition: 200ms;
+}
+
+
+.loading {
+    width: 120px;
+    height: 120px;
+    border: 8px solid #eee;
+    border-left-color: #7b57ff;
+    border-radius: 50%;
+    margin: 0 auto;
+    animation: rotate 1s linear infinite;
+}
+
+@keyframes rotate {
+    0%{transform: rotate(0deg);}
+    100%{transform: rotate(360deg);}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#checklist {
+    --background: #fff;
+    --text: #414856;
+    --check: #4f29f0;
+    --disabled: #c3c8de;
+    --width: 100px;
+    --height: 180px;
+    --border-radius: 10px;
+    display: grid;
+    grid-template-columns: 30px auto;
+    align-items: center;
+}
+
+#checklist label {
+    color: var(--text);
+    position: relative;
+    cursor: pointer;
+    display: grid;
+    align-items: center;
+    width: fit-content;
+    transition: color 0.3s ease;
+    margin-right: 20px;
+    font-size: 14px;
+}
+
+#checklist label:hover {
+    transition: 200ms;
+    opacity: 0.7;
+    color: #9173ff;
+}
+
+#checklist label::before,
+#checklist label::after {
+    content: "";
+    position: absolute;
+}
+
+#checklist label::before {
+    height: 2px;
+    width: 8px;
+    left: -27px;
+    background: var(--check);
+    border-radius: 2px;
+    transition: background 0.3s ease;
+}
+
+#checklist label:after {
+    height: 4px;
+    width: 4px;
+    top: 8px;
+    left: -25px;
+    border-radius: 50%;
+}
+
+#checklist input[type="checkbox"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    position: relative;
+    height: 15px;
+    width: 15px;
+    outline: none;
+    border: 0;
+    margin: 0 15px 0 0;
+    cursor: pointer;
+    background: var(--background);
+    display: grid;
+    align-items: center;
+    margin-right: 20px;
+}
+
+#checklist input[type="checkbox"]::before,
+#checklist input[type="checkbox"]::after {
+    content: "";
+    position: absolute;
+    height: 2px;
+    top: auto;
+    background: var(--check);
+    border-radius: 2px;
+}
+
+#checklist input[type="checkbox"]::before {
+    width: 0px;
+    right: 60%;
+    transform-origin: right bottom;
+}
+
+#checklist input[type="checkbox"]::after {
+    width: 0px;
+    left: 40%;
+    transform-origin: left bottom;
+}
+
+#checklist input[type="checkbox"]:checked::before {
+    animation: check-01 0.4s ease forwards;
+}
+
+#checklist input[type="checkbox"]:checked::after {
+    animation: check-02 0.4s ease forwards;
+}
+
+#checklist input[type="checkbox"]:checked+label {
+    color: var(--disabled);
+    animation: move 0.3s ease 0.1s forwards;
+}
+
+#checklist input[type="checkbox"]:checked+label::before {
+    background: var(--disabled);
+    animation: slice 0.4s ease forwards;
+}
+
+#checklist input[type="checkbox"]:checked+label::after {
+    animation: firework 0.5s ease forwards 0.1s;
+}
+
+@keyframes move {
+    50% {
+        padding-left: 8px;
+        padding-right: 0px;
+    }
+
+    100% {
+        padding-right: 4px;
+    }
+}
+
+@keyframes slice {
+    60% {
+        width: 100%;
+        left: 4px;
+    }
+
+    100% {
+        width: 100%;
+        left: -2px;
+        padding-left: 0;
+    }
+}
+
+@keyframes check-01 {
+    0% {
+        width: 4px;
+        top: auto;
+        transform: rotate(0);
+    }
+
+    50% {
+        width: 0px;
+        top: auto;
+        transform: rotate(0);
+    }
+
+    51% {
+        width: 0px;
+        top: 8px;
+        transform: rotate(45deg);
+    }
+
+    100% {
+        width: 5px;
+        top: 8px;
+        transform: rotate(45deg);
+    }
+}
+
+@keyframes check-02 {
+    0% {
+        width: 4px;
+        top: auto;
+        transform: rotate(0);
+    }
+
+    50% {
+        width: 0px;
+        top: auto;
+        transform: rotate(0);
+    }
+
+    51% {
+        width: 0px;
+        top: 8px;
+        transform: rotate(-45deg);
+    }
+
+    100% {
+        width: 10px;
+        top: 8px;
+        transform: rotate(-45deg);
+    }
+}
+
+@keyframes firework {
+    0% {
+        opacity: 1;
+        box-shadow: 0 0 0 -2px #4f29f0, 0 0 0 -2px #4f29f0, 0 0 0 -2px #4f29f0, 0 0 0 -2px #4f29f0, 0 0 0 -2px #4f29f0, 0 0 0 -2px #4f29f0;
+    }
+
+    30% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        box-shadow: 0 -15px 0 0px #4f29f0, 14px -8px 0 0px #4f29f0, 14px 8px 0 0px #4f29f0, 0 15px 0 0px #4f29f0, -14px 8px 0 0px #4f29f0, -14px -8px 0 0px #4f29f0;
+    }
+}
