@@ -112,8 +112,8 @@ function clear(e) {
     card.querySelectorAll("[type='checkbox']").forEach(element => {
         element.checked = false;
     })
-    // card.style.filter = "grayscale(100)"
-    // card.style.opacity = "0.4"
+    card.style.filter = "grayscale(100)"
+    card.style.opacity = "0.4"
 }
 
 function showPopup() {

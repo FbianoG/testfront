@@ -1,0 +1,66 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+}
+
+.leitosList {
+    width: 700px;
+    height: auto;
+    margin: 30px auto;
+    border: 1px solid #ddd;
+}
+
+.legends {
+    width: 100%;
+    height: 50px;
+    display: grid;
+    grid-template-columns: 60px 320px 150px;
+    align-items: center;
+    gap: 10px;
+    padding: 0 10px;
+
+    background: #7b57ff;
+    color: #fdfdfd;
+    font-weight: 500;
+}
+
+.leitos {
+    width: 100%;
+    height: 60px;
+    display: grid;
+    grid-template-columns: 60px 320px 150px 1fr 1fr;
+    gap: 10px;
+    align-items: center;
+    padding: 0 10px;
+    color: #555;
+    text-transform: capitalize;
+    border-bottom: 1px solid #eee;
+}
+
+.leitos:hover {
+    transition: 300ms;
+    background: #eee;
+}
+
+.leitos button {
+    /* background: #886ded; */
+    background: #aaa;
+    color: #fdfdfd;
+    border: none;
+    padding: 0 10px;
+    height: 27px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.leitos button:hover {
+    transition: 300ms;
+    background: #886ded;
+}
