@@ -6,13 +6,14 @@
 }
 
 body {
-    width: 100%;
+    width: 100vw;
     height: 100vh;
-    background: linear-gradient(to bottom right,  #7b57ff, #463d66 );
+    background: linear-gradient(to bottom right, #9173ff, rgb(106, 0, 255));
 }
 
+
+
 form {
-    /* position: absolute; */
     width: 300px;
     height: auto;
     background: #fdfdfd;
@@ -80,4 +81,20 @@ form button {
 form button:hover {
     opacity: 0.7;
     transition: 300ms;
+}
+
+
+footer {
+
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 40px;
+    background: #333;
+    color: #ddd;
+    font-size: 13px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
