@@ -16,15 +16,17 @@ body {
 .patientsList {
     width: 80%;
     margin: 50px auto;
+    padding: 0 0 50px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
-    gap: 60px ;
-
+    gap: 60px;
+    box-shadow: 0px 10px 0px #0001;
 }
 
- h2 {
-    color: #444;
+h2 {
+    margin: 20px 0 0 10%;
+    color: #555;
 }
 
 .patientCard {
@@ -36,6 +38,7 @@ body {
     display: flex;
     flex-wrap: wrap;
     align-content: start;
+
 }
 
 .marker {
@@ -133,6 +136,7 @@ textarea {
     cursor: pointer;
 }
 
+
 .cardButtons button:hover {
     background: #9173ff;
     transition: 200ms;
@@ -150,30 +154,14 @@ textarea {
 }
 
 @keyframes rotate {
-    0%{transform: rotate(0deg);}
-    100%{transform: rotate(360deg);}
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -383,4 +371,52 @@ textarea {
         opacity: 0;
         box-shadow: 0 -15px 0 0px #4f29f0, 14px -8px 0 0px #4f29f0, 14px 8px 0 0px #4f29f0, 0 15px 0 0px #4f29f0, -14px 8px 0 0px #4f29f0, -14px -8px 0 0px #4f29f0;
     }
+}
+
+
+
+.popup {
+    width: 250px;
+    height: 150px;
+    background: #9173ff;
+    position: fixed;
+    left: 50%;
+    bottom: -150px;
+    transform: translate(-50%);
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    color: #fdfdfd;
+    font-weight: 500;
+    box-shadow: 3px 3px 10px #0003;
+    transition: 300ms;
+}
+
+
+
+
+
+
+
+
+@media print {
+    @page {
+        size: A4;
+        margin: 5mm auto;
+    }
+
+    h2 {
+        text-align: center;
+        margin: 0;
+    }
+
+    .patientsList {
+        gap: 5px 20px;
+        width: 100%;
+        page-break-after: always;
+        box-shadow: none;
+    }
+
+
 }
