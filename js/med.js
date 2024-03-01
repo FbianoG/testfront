@@ -34,7 +34,7 @@ function loadPatients(e) {
         newCardPatient.classList = "patientCard"
         newCardPatient.innerHTML = cardPatientHTML(element)
         element.local == "box" ? list.appendChild(newCardPatient) : listMed.appendChild(newCardPatient)
-        if (element.name === "") {
+        if (element.name.trim() === "") {
             newCardPatient.style.filter = "grayscale(100)"
             newCardPatient.style.opacity = "0.4"
         }
@@ -66,7 +66,7 @@ function cardPatientHTML(e) {
         <button id="btnSave">Salvar</button>
         <button id="btnClear">Limpar</button>
     </div>
-    <div class="marker ${e.salta == true ? "pulse" : ""} ${e.alta == true ? "int" : ""}">${e.id}</div>
+    <div class="marker ${e.alta == true ? "pulse" : ""}">${e.id}</div>
     `
     return html
 }
@@ -91,10 +91,11 @@ async function save(e) {
     const nota = card.querySelector("[name='nota']").checked
     const conc = card.querySelector("[name='conc']").checked
     const int = card.querySelector("[name='int']").checked
+    const alta = name == "" ? false : undefined
 
     const response = await fetch(`${UrlBack}/updateLeito`, {
         method: "POST",
-        body: JSON.stringify({ token, id, name, plan, obs, nota, conc, int }),
+        body: JSON.stringify({ token, id, name, plan, obs, nota, conc, int, alta }),
         headers: { "Content-Type": "application/json" }
     })
     if (response.status == 201) {
