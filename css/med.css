@@ -8,7 +8,7 @@
 body {
     width: 100%;
     height: 100vh;
-    background: #fdfdfd;
+    background: #f6f7fb;
 }
 
 
@@ -30,31 +30,74 @@ h2 {
 }
 
 .patientCard {
-    width: 320px;
+    width: 350px;
     height: auto;
     position: relative;
-    padding: 5px;
     box-shadow: 2px 2px 20px #0002;
     display: flex;
     flex-wrap: wrap;
     align-content: start;
+    background: #fdfdfd;
+    border-radius: 5px;
+    border: 1px solid transparent;
 
 }
 
-.marker {
-    position: absolute;
-    top: 0;
-    right: -30px;
-    width: 30px;
-    height: 100%;
-    display: flex;
-    justify-content: center;
+.patientCard:hover {
+    transition: 400ms;
+    border-color: #d7cdff;
+    /* box-shadow: none; */
+}
+
+.cardHeader {
+    border-bottom: 1px solid #bbb;
+    padding: 7px 20px;
+    display: grid;
+    grid-template-columns: 90% 1fr;
+    gap: 5px;
     align-items: center;
+    justify-content: center;
+
+}
+
+.headerData {
+    color: #929197;
+
+}
+
+.box {
+
+    text-align: center;
+    width: 35px;
+    line-height: 35px;
+    border-radius: 50%;
+    background: #e5ddfe;
+    color: #7b57ff;
     font-weight: 700;
-    color: white;
-    background: #7b57ff;
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
+}
+
+
+.cardData {
+    width: 100%;
+    padding: 7px 20px 7px 14px;
+    display: flex;
+}
+
+#btnSave,
+#btnClear {
+    font-size: 22px;
+    color: #ccc;
+    cursor: pointer;
+}
+
+#btnSave:hover,
+#btnClear:hover {
+    transition: 300ms;
+    color: #7b57ff;
+}
+
+.active {
+    color: #7b57ff;
 }
 
 .int {
@@ -69,31 +112,26 @@ h2 {
 @keyframes pulse {
 
 
-    30% {
-        background: #ff2d11;
+    50% {
+        opacity: 0.5;
     }
 
-    70% {
-        background: #ff2d11;
-    }
+
 
 }
 
-.cardData {
-    width: 40%;
 
-    display: inline-block;
-}
 
 .patientCard input {
     width: 100%;
     border: none;
-    padding: 3px;
     text-transform: capitalize;
     outline: none;
-    color: #333;
+    color: #929197;
     font-weight: 500;
+    background: transparent;
 }
+
 
 .patientCard input::placeholder {
     color: #bbb;
@@ -101,13 +139,26 @@ h2 {
 }
 
 #name {
-    width: 100%;
     margin: 0;
     font-size: 15px;
+
+}
+
+#plan {
+    font-size: 13px;
+    width: 70%;
+}
+
+
+#age {
+    width: 20%;
+    /* color: #4f29f0; */
+    /* text-align: center; */
+    text-transform: none;
 }
 
 textarea {
-    width: 60%;
+    width: 100%;
     padding: 3px;
     outline: none;
     border-radius: 5px;
@@ -119,27 +170,59 @@ textarea {
 }
 
 .cardButtons {
-    margin: 10px 0 0;
     width: 100%;
+    padding: 12px 20px;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.cardButtons button {
-    background: #7b57ff;
-    background: #aaa;
-    color: #fdfdfd;
-    border: none;
-    width: 70px;
-    height: 27px;
-    border-radius: 20px;
-    cursor: pointer;
-}
 
 
 .cardButtons button:hover {
     background: #9173ff;
     transition: 200ms;
+}
+
+.status {
+    width: 135px;
+    text-align: right;
+    font-size: 13px;
+    letter-spacing: 1px;
+
+}
+
+.statusMark {
+    margin: 0 2px 0 0;
+    font-size: 9px;
+    text-shadow: 2px 2px 3px #0003;
+    color: #aaa;
+    animation: pulse 1s ease-in-out infinite;
+}
+
+.stausText {
+    display: inline-block;
+    text-transform: capitalize;
+    color: #aaa;
+}
+
+#an {
+    color: #ffbf00;
+}
+
+#al {
+    color: #ed1111;
+    animation: pulse 1s infinite;
+}
+
+#in {
+    color: #1c8321;
+}
+
+
+.cardButtons .hour {
+    display: block;
+    color: #f03131;
 }
 
 
@@ -163,7 +246,9 @@ textarea {
     }
 }
 
-
+.internado {
+    background: #62a95a;
+}
 
 
 
@@ -178,6 +263,7 @@ textarea {
     display: grid;
     grid-template-columns: 30px auto;
     align-items: center;
+    max-width: 120px;
 }
 
 #checklist label {
@@ -187,6 +273,7 @@ textarea {
     display: grid;
     align-items: center;
     width: fit-content;
+
     transition: color 0.3s ease;
     margin-right: 20px;
     font-size: 14px;
@@ -391,6 +478,8 @@ textarea {
     font-weight: 500;
     box-shadow: 3px 3px 10px #0003;
     transition: 300ms;
+
+    border-radius: 5px;
 }
 
 

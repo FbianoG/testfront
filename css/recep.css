@@ -35,32 +35,35 @@ body {
     width: 100%;
     height: 60px;
     display: grid;
-    grid-template-columns: 60px 320px 150px 1fr 1fr;
+    grid-template-columns: 60px 320px 150px 1fr 1fr 1fr;
     gap: 10px;
     align-items: center;
     padding: 0 10px;
     color: #555;
+
     text-transform: capitalize;
     border-bottom: 1px solid #eee;
 }
 
+.leito {
+    font-weight: 500;
+
+}
+
 .leitos:hover {
     transition: 300ms;
-    background: #eee;
+    background: #fdfdfd;
 }
 
-.leitos button {
-    /* background: #886ded; */
-    background: #aaa;
-    color: #fdfdfd;
-    border: none;
-    padding: 0 10px;
-    height: 27px;
-    border-radius: 20px;
+i {
+    font-size: 20px;
+    color: #ccc;
     cursor: pointer;
+    text-align: center;
+
 }
 
-.leitos button:hover {
+i:hover {
     transition: 300ms;
-    background: #886ded;
+    color: #7b57ff;
 }

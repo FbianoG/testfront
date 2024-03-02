@@ -6,6 +6,12 @@
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     <link rel='stylesheet' href='./css/med.css'>
     <script src='./js/med.js' defer></script>
+
+    <!-- AWESOME -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+
     <title>SeeBox</title>
 
 
@@ -15,7 +21,67 @@
 
     <h2>Box - Emergência Adulta</h2>
     <div class="patientsList">
-        <div class="loading"></div>
+        <!-- <div class="loading"></div> -->
+
+
+
+        <div class="patientCard">
+
+            <div class="cardHeader">
+                <div class="headerData">
+                    <input type="text" name="id" style="display: none;" value="">
+                    <input type="text" name="name" id="name" placeholder="Paciente" value="Fabiano Gonçalves Machado">
+                    <input type="text" name="plan" id="plan" placeholder="Plano" value="Bradesco">
+                    <input type="text" name="age" id="age" placeholder="Idade" value="">
+                </div>
+                <span class="box">01</span>
+            </div>
+
+
+            <div class="cardData">
+                <div id="checklist">
+                    <input value="1" name="nota" type="checkbox" id="01">
+                    <label for="01">Nota</label>
+
+                    <input value="2" name="conc" type="checkbox" id="02">
+                    <label for="02">Conciliação</label>
+
+                    <input value="3" name="pres" type="checkbox" id="03">
+                    <label for="03">Prescrição</label>
+
+                    <input value="4" name="exa" type="checkbox" id="04">
+                    <label for="04">Exames</label>
+
+                    <input value="5" name="int" type="checkbox" id="05">
+                    <label for="05">Internação</label>
+                </div>
+                <textarea name="obs" spellcheck="false"></textarea>
+            </div>
+            <div class="cardButtons">
+                <i class="fa-solid fa-floppy-disk" id="btnSave"></i>
+                <i class="fa-solid fa-broom" id="btnClear"></i>
+                <div class="status">
+                    <span class="statusMark"></span>
+                    <span class="stausText">Aguardando Alta</span>
+                    <span class="hour">20:31h</span>
+                </div>
+                
+            </div>
+            
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
     </div>
     <h2>Medicação - Emergência Adulta</h2>
     <div class="patientsList">

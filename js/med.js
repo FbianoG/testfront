@@ -1,6 +1,6 @@
 // Variáveis
-const UrlBack = "https://teste-livid-tau.vercel.app"
-// const UrlBack = "http://localhost:3000"
+// const UrlBack = "https://teste-livid-tau.vercel.app"
+const UrlBack = "http://localhost:3000"
 const token = localStorage.getItem("Token")
 const list = document.querySelectorAll('.patientsList')[0]
 const listMed = document.querySelectorAll('.patientsList')[1]
@@ -45,34 +45,62 @@ function loadPatients(e) {
 }
 
 function cardPatientHTML(e) {
+    let statsClass
+    if (e.stats == "análise") {
+        statsClass = "an"
+    } else if (e.stats == "aguardando alta") {
+        statsClass = "al"
+    } else if (e.stats == "internado") {
+        statsClass = "in"
+    }
     const html = `
-    <input type="text" name="id" style="display: none;" value="${e._id}">
-    <input type="text" name="name" id="name" placeholder="Paciente" value="${e.name}">
+    
+    <div class="cardHeader">
+        <div class="headerData">
+            <input type="text" name="id" style="display: none;" value="${e._id}">
+            <input type="text" name="name" id="name" placeholder="Paciente" value="${e.name}">
+            <input type="text" name="plan" id="plan" placeholder="Plano" value="${e.plan}">
+            <input type="text" name="age" id="age" placeholder="Idade" value="${e.age}">
+        </div>
+        <span class="box">${e.id}</span>
+    </div>
     <div class="cardData">
-        <input type="text" name="plan" placeholder="Plano" value="${e.plan}">
         <div id="checklist">
             <input value="1" name="nota" type="checkbox" id="${e._id}01" ${e.nota == true ? "checked" : ""}>
             <label for="${e._id}01">Nota</label>
+
             <input value="2" name="conc" type="checkbox" id="${e._id}02" ${e.conc == true ? "checked" : ""}>
             <label for="${e._id}02">Conciliação</label>
-            <input value="3" name="r" type="checkbox" id="${e._id}03">
-            <label for="${e._id}03">coffe</label>
-            <input value="4" name="int" type="checkbox" id="${e._id}04" ${e.int == true ? "checked" : ""}>
-            <label for="${e._id}04">Internação</label>
+            
+            <input value="3" name="pres" type="checkbox" id="${e._id}03" ${e.pres == true ? "checked" : ""}>
+            <label for="${e._id}03">Prescrição</label>
+
+
+            <input value="4" name="exa" type="checkbox" id="${e._id}04" ${e.exa == true ? "checked" : ""}>
+            <label for="${e._id}04">Exames</label>
+
+            <input value="5" name="int" type="checkbox" id="${e._id}05" ${e.int == true ? "checked" : ""}>
+            <label for="${e._id}05">Internação</label>
+        </div>
+        <textarea name="obs" spellcheck="false">${e.obs}</textarea>
+    </div>
+    <div class="cardButtons">
+        <i class="fa-solid fa-floppy-disk" id="btnSave"></i>
+        <i class="fa-solid fa-broom" id="btnClear"></i>
+        <div class="status">
+        <i class="fa-solid fa-circle statusMark" id="${statsClass}"></i>
+            <span class="stausText" id="${statsClass}">${e.stats ? e.stats : "Indefinido"}</span>
+            <span class="hour"> ${e.hour && e.stats == "aguardando alta" ? e.hour + "h" : "-"}</span>
         </div>
     </div>
-    <textarea name="obs" spellcheck="false">${e.obs}</textarea>
-    <div class="cardButtons">
-        <button id="btnSave">Salvar</button>
-        <button id="btnClear">Limpar</button>
-    </div>
-    <div class="marker ${e.alta == true ? "pulse" : ""}">${e.id}</div>
+    
     `
     return html
 }
 
 function activeCard(e) {
-    const card = e.target.parentNode
+    const card = e.target.parentNode.parentNode.parentNode
+    console.log(card);
     if (e.target.value.trim() === "") {
         card.style.filter = "grayscale(100)"
         card.style.opacity = "0.4"
@@ -86,16 +114,19 @@ async function save(e) {
     const card = e.target.parentNode.parentNode
     const id = card.querySelector("[name='id']").value
     const name = card.querySelector("[name='name']").value
+    const age = card.querySelector("[name='age']").value
     const plan = card.querySelector("[name='plan']").value
     const obs = card.querySelector("[name='obs']").value
     const nota = card.querySelector("[name='nota']").checked
     const conc = card.querySelector("[name='conc']").checked
+    const pres = card.querySelector("[name='pres']").checked
+    const exa = card.querySelector("[name='exa']").checked
     const int = card.querySelector("[name='int']").checked
-    const alta = name == "" ? false : undefined
+    // console.log(name);
 
     const response = await fetch(`${UrlBack}/updateLeito`, {
         method: "POST",
-        body: JSON.stringify({ token, id, name, plan, obs, nota, conc, int, alta }),
+        body: JSON.stringify({ token, id, name, age, plan, obs, nota, conc, pres, exa, int, }),
         headers: { "Content-Type": "application/json" }
     })
     if (response.status == 201) {
@@ -103,16 +134,25 @@ async function save(e) {
     }
     const data = await response.json()
     console.log(response.status);
+    getLeitos()
 }
 
 function clear(e) {
+    const alertResposta = window.confirm("Tem certeza que deseja limpar o leito?")
+    if (alertResposta === false) {
+        return
+    }
+
     const card = e.target.parentNode.parentNode
     card.querySelector("#name").value = ""
+    card.querySelector("#age").value = ""
     card.querySelector("[name='plan']").value = ""
     card.querySelector("[name='obs']").value = ""
+    card.querySelectorAll(".hour")[0].textContent = "-"
     card.querySelectorAll("[type='checkbox']").forEach(element => {
         element.checked = false;
     })
+    save(e)
     card.style.filter = "grayscale(100)"
     card.style.opacity = "0.4"
 }
