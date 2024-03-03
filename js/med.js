@@ -79,8 +79,11 @@ function cardPatientHTML(e) {
             <input value="4" name="exa" type="checkbox" id="${e._id}04" ${e.exa == true ? "checked" : ""}>
             <label for="${e._id}04">Exames</label>
 
-            <input value="5" name="int" type="checkbox" id="${e._id}05" ${e.int == true ? "checked" : ""}>
-            <label for="${e._id}05">Internação</label>
+            <input value="5" name="tev" type="checkbox" id="${e._id}05" ${e.tev == true ? "checked" : ""}>
+            <label for="${e._id}05">TEV</label>
+
+            <input value="6" name="int" type="checkbox" id="${e._id}06" ${e.int == true ? "checked" : ""}>
+            <label for="${e._id}06">Internação</label>
         </div>
         <textarea name="obs" spellcheck="false">${e.obs}</textarea>
     </div>
@@ -90,7 +93,7 @@ function cardPatientHTML(e) {
         <div class="status">
         <i class="fa-solid fa-circle statusMark" id="${statsClass}"></i>
             <span class="stausText" id="${statsClass}">${e.stats ? e.stats : "Indefinido"}</span>
-            <span class="hour"> ${e.hour && e.stats == "aguardando alta" ? e.hour + "h" : "-"}</span>
+            <span class="hour"> ${e.hour && e.stats == "aguardando alta" ? e.hour + "h" : ""}</span>
         </div>
     </div>
     
@@ -121,12 +124,13 @@ async function save(e) {
     const conc = card.querySelector("[name='conc']").checked
     const pres = card.querySelector("[name='pres']").checked
     const exa = card.querySelector("[name='exa']").checked
+    const tev = card.querySelector("[name='tev']").checked
     const int = card.querySelector("[name='int']").checked
     // console.log(name);
 
     const response = await fetch(`${UrlBack}/updateLeito`, {
         method: "POST",
-        body: JSON.stringify({ token, id, name, age, plan, obs, nota, conc, pres, exa, int, }),
+        body: JSON.stringify({ token, id, name, age, plan, obs, nota, conc, pres, exa, tev, int, }),
         headers: { "Content-Type": "application/json" }
     })
     if (response.status == 201) {
