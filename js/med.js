@@ -1,6 +1,6 @@
 // Variáveis
-// const UrlBack = "https://teste-livid-tau.vercel.app"
-const UrlBack = "http://localhost:3000"
+const UrlBack = "https://teste-livid-tau.vercel.app"
+// const UrlBack = "http://localhost:3000"
 const token = localStorage.getItem("Token")
 const list = document.querySelectorAll('.patientsList')[0]
 const listMed = document.querySelectorAll('.patientsList')[1]
