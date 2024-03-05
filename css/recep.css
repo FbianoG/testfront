@@ -8,41 +8,52 @@
 body {
     width: 100%;
     height: 100vh;
+    background: #f6f7fb;
 }
 
 .leitosList {
     width: 750px;
     height: auto;
     margin: 30px auto;
-    border: 1px solid #ddd;
+
 }
 
 .legends {
     width: 100%;
-    height: 50px;
+    height: 60px;
     display: grid;
     grid-template-columns: 60px 320px 150px;
     align-items: center;
     gap: 10px;
     padding: 0 10px;
-
     background: #7b57ff;
     color: #fdfdfd;
     font-weight: 500;
+    border-radius: 7px;
+    margin: 0 0 10px;
+    box-shadow: 3px 3px 10px #0003;
+    padding: 0 25px;
 }
 
 .leitos {
     width: 100%;
-    height: 60px;
+    height: 70px;
+    border-radius: 7px;
     display: grid;
     grid-template-columns: 60px 320px 150px 1fr 1fr 1fr;
     gap: 10px;
     align-items: center;
-    padding: 0 10px;
-    color: #555;
-
+    padding: 0 25px;
+    color: #666;
     text-transform: capitalize;
-    border-bottom: 1px solid #eee;
+    font-weight: 500;
+    margin: 0 0 10px;
+    border: 1px solid #eee;
+}
+
+.leitos:hover {
+    box-shadow: 2px 2px 5px #0002;
+    transition: 250ms;
 }
 
 .leito {

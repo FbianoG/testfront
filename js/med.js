@@ -1,6 +1,6 @@
 // Variáveis
-const UrlBack = "https://teste-livid-tau.vercel.app"
-// const UrlBack = "http://localhost:3000"
+// const UrlBack = "https://teste-livid-tau.vercel.app"
+const UrlBack = "http://localhost:3000"
 const token = localStorage.getItem("Token")
 const list = document.querySelectorAll('.patientsList')[0]
 const listMed = document.querySelectorAll('.patientsList')[1]
@@ -133,12 +133,14 @@ async function save(e) {
         body: JSON.stringify({ token, id, name, age, plan, obs, nota, conc, pres, exa, tev, int, }),
         headers: { "Content-Type": "application/json" }
     })
-    if (response.status == 201) {
+    if (response.status == 400) {
+        window.location.href = "login.html"
+    } else {
+        const data = await response.json()
+        console.log(data);
+        getLeitos()
         showPopup()
     }
-    const data = await response.json()
-    console.log(response.status);
-    getLeitos()
 }
 
 function clear(e) {
