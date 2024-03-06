@@ -33,29 +33,54 @@ function loadLeitos(e) {
     medList.innerHTML = ""
     e.forEach(element => {
         const newLeito = document.createElement("div")
-        newLeito.classList = `leitos`
+        newLeito.classList = `patientCard`
         newLeito.innerHTML = createLeitoHtml(element)
         element.local == "box" ? boxList.appendChild(newLeito) : medList.appendChild(newLeito)
         newLeito.querySelectorAll("i").forEach(element => element.addEventListener('click', stats))
         // newLeito.querySelector('#btnInt').addEventListener('click', internar)
-        element.stats == "análise" ? newLeito.style.background = "#fffae4" : ""
-        element.stats == "aguardando alta" ? newLeito.style.background = "#f3edff" : ""
-        element.stats == "internado" ? newLeito.style.background = "#d6efd4" : ""
+        // element.stats == "análise" ? newLeito.style.background = "#fffae4" : ""
+        // element.stats == "aguardando alta" ? newLeito.style.background = "#f3edff" : ""
+        // element.stats == "internado" ? newLeito.style.background = "#d6efd4" : ""
     });
 }
 
-function createLeitoHtml(e) {
-    const html = `
-        <span class="id" style="display: none;">${e._id}</span>
-        <span class="leito">${e.id}</span>
-        <span class="name">${e.name}</span>
-        <span class="plan">${e.plan}</span>
-        <i class="fa-solid fa-magnifying-glass-chart" ${e.stats == "análise" || !e.stats && e.name ? `style="color: #a08af2"` : ""} id="análise"></i>
-        <i class="fa-solid fa-file-waveform"   ${e.stats == "aguardando alta" ? `style="color: #a08af2"` : ""} id="aguardando alta"></i>
-        <i class="fa-solid fa-bed-pulse"   ${e.stats == "internado" ? `style="color: #a08af2"` : ""} id="internado"></i>
+function createLeitoHtml(params) {
 
+    let statsClass
+    if (params.stats == "análise") {
+        statsClass = "an"
+    } else if (params.stats == "aguardando alta") {
+        statsClass = "al"
+    } else if (params.stats == "internado") {
+        statsClass = "in"
+    }
+
+    const html = `  
+    <div class="loadingBar">
+    <div class="load animate" style="${changeLoad(params.stats)}"></div>
+</div>
+        <div class="headerCard">
+            <div class="box">
+                <span style="display: none;" id="id">${params._id}</span>
+                <span>${params.id}</span>
+            </div>
+            <h4 id="name">${params.name}</h4>
+        </div>
+        <div class="cardData">
+            <span>${params.plan}</span>
+            <div class="status">
+            <i class="fa-solid fa-circle ballStatus" id="${statsClass}"></i>
+                <span>${params.stats ? params.stats : "Indefinido"}</span>
+            </div>
+            <input id="inputRoom" type="text" placeholder="-" value="${params.room ? params.room : ""}" disabled>
+            <div class="dataButtons">
+            <i class="fa-solid fa-magnifying-glass-chart" ${params.stats == "análise" || !params.stats && params.name ? `style="color: #a08af2"` : ""} id="análise"></i>
+            <i class="fa-solid fa-file-waveform"   ${params.stats == "aguardando alta" ? `style="color: #a08af2"` : ""} id="aguardando alta"></i>
+            <i class="fa-solid fa-bed-pulse"   ${params.stats == "internado" ? `style="color: #a08af2"` : ""} id="internado"></i>
+            </div>
+            
+        </div>
     `
-    console.log(e.stats);
     return html
 }
 
@@ -72,10 +97,11 @@ async function stats(e) {
 
     // const stats = e.target.id
     // console.log(e.target);
+    const card = this.parentNode.parentNode.parentNode
 
     const stats = this.id
-    const id = this.parentNode.querySelectorAll(".id")[0].textContent
-    const name = this.parentNode.querySelectorAll(".name")[0].textContent
+    const id = card.querySelector("#id").textContent
+    const name = card.querySelector("#name").textContent
     console.log(name);
     if (name.trim() == "") {
         console.log({ message: "Return - valor em branco." });
@@ -91,6 +117,21 @@ async function stats(e) {
     } else {
 
         getLeitos()
+    }
+}
+
+
+
+function changeLoad(params) {
+    if (params == "" || params == null) {
+        return 'width: 0%;';
+    } else if (params == "análise") {
+        return 'width: 30%; background: #efb850;';
+        
+    } else if (params == "aguardando alta") {
+        return 'width: 65%; background: #9acde2;';
+    } else if (params == "internado") {
+        return 'width: 100%;';
     }
 }
 

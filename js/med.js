@@ -60,6 +60,7 @@ function cardPatientHTML(e) {
             <input type="text" name="id" style="display: none;" value="${e._id}">
             <input type="text" name="name" id="name" placeholder="Paciente" value="${e.name}">
             <input type="text" name="plan" id="plan" placeholder="Plano" value="${e.plan}">
+            <input type="text" name="plan" id="room" placeholder="Sem Quarto" value="${e.room ? e.room : ""}" disabled>
             <input type="text" name="age" id="age" placeholder="Idade" value="${e.age}">
         </div>
         <span class="box">${e.id}</span>

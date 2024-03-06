@@ -93,7 +93,8 @@ footer {
     height: 40px;
     background: #333;
     color: #ddd;
-    font-size: 13px;
+    font-size: 11px;
+    letter-spacing: 1px;
     display: flex;
     justify-content: center;
     align-items: center;

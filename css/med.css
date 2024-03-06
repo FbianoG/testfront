@@ -146,7 +146,13 @@ h2 {
 
 #plan {
     font-size: 13px;
-    width: 70%;
+    width: 38%;
+}
+
+#room {
+    width: 38%;
+    text-align: center;
+    color: #7b57ff;
 }
 
 
