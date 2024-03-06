@@ -37,6 +37,8 @@ async function login(e) {
             window.location.href = "med.html"
         } else if (data.roles == "recep") {
             window.location.href = "recep.html"
+        } else if (data.roles == "adm") {
+            window.location.href = "admin.html"
         }
     }
 }
