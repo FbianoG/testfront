@@ -1,5 +1,5 @@
-// const UrlBack = "https://teste-livid-tau.vercel.app"
-const UrlBack = "http://localhost:3000"
+const UrlBack = "https://teste-livid-tau.vercel.app"
+// const UrlBack = "http://localhost:3000"
 
 const token = localStorage.getItem("Token")
 
@@ -15,7 +15,6 @@ if (token.trim() == "") {
 
 // Funções 
 async function getLeitos() {
-
     const response = await fetch(`${UrlBack}/getLeitos`, {
         method: "POST",
         body: JSON.stringify({ token }),

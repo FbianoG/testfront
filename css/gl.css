@@ -151,3 +151,24 @@ body {
         /* width: max-content; */
     }
 }
+
+
+.loading {
+    width: 120px;
+    height: 120px;
+    border: 8px solid #eee;
+    border-left-color: #7b57ff;
+    border-radius: 50%;
+    margin: 0 auto;
+    animation: rotate 1s linear infinite;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
