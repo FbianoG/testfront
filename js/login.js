@@ -1,5 +1,6 @@
 // Variáveis
-const UrlBack = "https://teste-livid-tau.vercel.app"
+// const UrlBack = "https://teste-livid-tau.vercel.app"
+const UrlBack = "http://localhost:3000"
 const btnSubmit = document.querySelector('#btnSubmit')
 let count = 0
 
@@ -25,14 +26,15 @@ async function login(e) {
         headers: { "Content-Type": "application/json" }
     })
 
-    if (response.status === 400) {
+    if (response.status === 400 || response.status === 401 ) {
         btnSubmit.removeAttribute("disabled")
         btnSubmit.style.opacity = '';
         btnSubmit.style.cursor = '';
         incorrectLogin()
-    } else {
+    } else if (response.status === 200) {
         const data = await response.json()
         localStorage.setItem("Token", data.token)
+        btnSubmit.removeAttribute("disabled")
         if (data.roles == "med") {
             window.location.href = "med.html"
         } else if (data.roles == "recep") {
@@ -40,6 +42,8 @@ async function login(e) {
         } else if (data.roles == "adm") {
             window.location.href = "admin.html"
         }
+    } else if (response.status === 500) {
+        window.location.href = "error.html"
     }
 }
 

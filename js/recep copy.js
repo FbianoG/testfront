@@ -36,7 +36,7 @@ function loadLeitos(e) {
         newLeito.classList = `patientCard`
         newLeito.innerHTML = createLeitoHtml(element)
         element.local == "box" ? boxList.appendChild(newLeito) : medList.appendChild(newLeito)
-        newLeito.querySelectorAll("button").forEach(element => element.addEventListener('click', stats))
+        newLeito.querySelectorAll("i").forEach(element => element.addEventListener('click', stats))
         // newLeito.querySelector('#btnInt').addEventListener('click', internar)
         // element.stats == "análise" ? newLeito.style.background = "#fffae4" : ""
         // element.stats == "aguardando alta" ? newLeito.style.background = "#f3edff" : ""
@@ -56,25 +56,29 @@ function createLeitoHtml(params) {
     }
 
     const html = `  
-        <span class="leito" id="id" style="display: none;">${params._id}</span>
-        <span class="leito">${params.id}</span>
-        <div class="data">
-            <span class="nome" id="name">${params.name}</span>
-            <br>
-            <span class="idade">${params.age}</span>
-        </div>
-        <span class="plano">${params.plan}</span>
-        <span class="status ${params.stats}">${params.stats ? params.stats : "ind"}</span>
-        <span class="quarto">${params.room ? params.room : "-"}</span>
-        <div class="more">
-            <span></span>
-            <span></span>
-            <span></span>
-            <div class="moreData">
-                <button id="análise">Análise</button>
-                <button  id="aguardando alta">Sol. Alta</button>
-                <button  id="internado">Internar</button>
+    <div class="loadingBar">
+    <div class="load animate" style="${changeLoad(params.stats)}"></div>
+</div>
+        <div class="headerCard">
+            <div class="box">
+                <span style="display: none;" id="id">${params._id}</span>
+                <span>${params.id}</span>
             </div>
+            <h4 id="name">${params.name}</h4>
+        </div>
+        <div class="cardData">
+            <span>${params.plan}</span>
+            <div class="status">
+            <i class="fa-solid fa-circle ballStatus" id="${statsClass}"></i>
+                <span>${params.stats ? params.stats : "Indefinido"}</span>
+            </div>
+            <input id="inputRoom" type="text" placeholder="-" value="${params.room ? params.room : ""}" disabled>
+            <div class="dataButtons">
+            <i class="fa-solid fa-magnifying-glass-chart" ${params.stats == "análise" || !params.stats && params.name ? `style="color: #a08af2"` : ""} id="análise"></i>
+            <i class="fa-solid fa-file-waveform"   ${params.stats == "aguardando alta" ? `style="color: #a08af2"` : ""} id="aguardando alta"></i>
+            <i class="fa-solid fa-bed-pulse"   ${params.stats == "internado" ? `style="color: #a08af2"` : ""} id="internado"></i>
+            </div>
+            
         </div>
     `
     return html
@@ -91,12 +95,13 @@ async function stats(e) {
     const minutes = date.getMinutes()
     const dateReq = `${String(hour).padStart(2, "0")}:${String(minutes).padStart(2, "0")}`
 
+    // const stats = e.target.id
+    // console.log(e.target);
     const card = this.parentNode.parentNode.parentNode
-    
+
     const stats = this.id
     const id = card.querySelector("#id").textContent
     const name = card.querySelector("#name").textContent
-    console.log(stats);
     console.log(name);
     if (name.trim() == "") {
         console.log({ message: "Return - valor em branco." });
