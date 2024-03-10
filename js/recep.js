@@ -37,6 +37,7 @@ function loadLeitos(e) {
         newLeito.innerHTML = createLeitoHtml(element)
         element.local == "box" ? boxList.appendChild(newLeito) : medList.appendChild(newLeito)
         newLeito.querySelectorAll("button").forEach(element => element.addEventListener('click', stats))
+        element.name.trim() == "" ? newLeito.style.opacity = "0.5": ""
         // newLeito.querySelector('#btnInt').addEventListener('click', internar)
         // element.stats == "análise" ? newLeito.style.background = "#fffae4" : ""
         // element.stats == "aguardando alta" ? newLeito.style.background = "#f3edff" : ""
