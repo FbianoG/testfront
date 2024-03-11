@@ -25,8 +25,8 @@ body {
     display: grid;
     grid-template-columns: 50px 340px 130px 110px 85px;
     gap: 10px;
-    background: #ffffff;
-    color: #666;
+    background: #53526a;
+    color: #fdfdfd;
     font-weight: 500;
     border-radius: 5px;
     box-shadow: 1px 1px 5px #0003;
