@@ -17,7 +17,7 @@ async function login(e) {
     btnSubmit.style.opacity = "0.3"
     btnSubmit.style.cursor = "default"
 
-    const username = document.querySelectorAll('[name="username"]')[0].value
+    const username = document.querySelectorAll('[name="username"]')[0].value.toLowerCase()
     const password = document.querySelectorAll('[name="password"]')[0].value
 
     const response = await fetch(`${UrlBack}/login`, {
@@ -26,7 +26,7 @@ async function login(e) {
         headers: { "Content-Type": "application/json" }
     })
 
-    if (response.status === 400 || response.status === 401 ) {
+    if (response.status === 400 || response.status === 401) {
         btnSubmit.removeAttribute("disabled")
         btnSubmit.style.opacity = '';
         btnSubmit.style.cursor = '';
@@ -42,7 +42,7 @@ async function login(e) {
         } else if (data.roles == "adm") {
             window.location.href = "admin.html"
         }
-    } else if (response.status === 500) {
+    } else {
         window.location.href = "error.html"
     }
 }

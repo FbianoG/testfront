@@ -20,10 +20,10 @@ body {
 
 .legends {
     width: 100%;
-    margin: 0 auto -40px ;
+    margin: 0 auto -40px;
     padding: 20px;
     display: grid;
-    grid-template-columns: 50px 340px 130px 110px 85px ;
+    grid-template-columns: 50px 340px 130px 110px 85px;
     gap: 10px;
     background: #ffffff;
     color: #666;
@@ -194,3 +194,19 @@ body {
 
 
 
+.loading {
+    width: 120px;
+    height: 120px;
+    margin: 50px auto;
+    border-radius: 50%;
+    border: 8px solid #eee;
+    border-left-color: #7b57ff;
+    /* border-right-color: #7b57ff; */
+    animation: rotate 1s linear infinite;
+}
+
+@keyframes rotate {
+    100% {
+        transform: rotate(360deg);
+    }
+}

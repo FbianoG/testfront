@@ -70,7 +70,7 @@ h2 {
     text-align: center;
     width: 35px;
     line-height: 35px;
-    border-radius: 50%;
+    border-radius: 5px;
     background: #e5ddfe;
     color: #7b57ff;
     font-weight: 700;
@@ -114,6 +114,7 @@ h2 {
 
     50% {
         opacity: 0.5;
+        transform: scale(0.95);
     }
 
 
@@ -203,7 +204,6 @@ textarea {
     border-radius: 15px;
     padding: 2px 5px;
     text-align: center;
-    background: #f3f3f3;
 }
 
 
