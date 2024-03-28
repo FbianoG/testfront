@@ -50,7 +50,7 @@ async function login(e) {
 function incorrectLogin(e) {
     count += 1
     document.querySelector('#msgError').style.display = "block"
-    document.querySelector('#msgError').textContent = `Usuáro ou Senha inválidos. (0${count})`
+    document.querySelector('#msgError').textContent = `Usuário ou senha inválidos. (0${count})`
     document.querySelectorAll('[name="username"]')[0].style.border = "1px solid red"
     document.querySelectorAll('[name="username"]')[0].style.outline = "none"
     document.querySelectorAll('[name="password"]')[0].style.border = "1px solid red"

@@ -12,7 +12,6 @@ if (!token) {
 }
 
 
-
 // Funções
 async function getLeitos() {
     const response = await fetch(`${UrlBack}/getLeitos`, {
@@ -24,7 +23,6 @@ async function getLeitos() {
         window.location.href = "login.html"
     }
     const data = await response.json()
-    // console.log(data.leitos);
     loadLeitos(data.leitos)
 }
 
@@ -38,15 +36,10 @@ function loadLeitos(e) {
         element.local == "box" ? boxList.appendChild(newLeito) : medList.appendChild(newLeito)
         newLeito.querySelectorAll("button").forEach(element => element.addEventListener('click', stats))
         element.name.trim() == "" ? newLeito.style.opacity = "0.5": ""
-        // newLeito.querySelector('#btnInt').addEventListener('click', internar)
-        // element.stats == "análise" ? newLeito.style.background = "#fffae4" : ""
-        // element.stats == "aguardando alta" ? newLeito.style.background = "#f3edff" : ""
-        // element.stats == "internado" ? newLeito.style.background = "#d6efd4" : ""
-    });
+    })
 }
 
 function createLeitoHtml(params) {
-
     let statsClass
     if (params.stats == "análise") {
         statsClass = "an"
@@ -55,7 +48,6 @@ function createLeitoHtml(params) {
     } else if (params.stats == "internado") {
         statsClass = "in"
     }
-
     const html = `  
         <span class="leito" id="id" style="display: none;">${params._id}</span>
         <span class="leito">${params.id}</span>
@@ -86,14 +78,11 @@ async function stats(e) {
     if (resposte == false) {
         return
     }
-
     const date = new Date()
     const hour = date.getHours()
     const minutes = date.getMinutes()
     const dateReq = `${String(hour).padStart(2, "0")}:${String(minutes).padStart(2, "0")}`
-
     const card = this.parentNode.parentNode.parentNode
-    
     const stats = this.id
     const id = card.querySelector("#id").textContent
     const name = card.querySelector("#name").textContent
@@ -111,12 +100,9 @@ async function stats(e) {
     if (response.status === 400) {
         window.location.href = "login.html"
     } else {
-
         getLeitos()
     }
 }
-
-
 
 function changeLoad(params) {
     if (params == "" || params == null) {
@@ -132,11 +118,5 @@ function changeLoad(params) {
 }
 
 
-
-
-
-
 // Chamadas
-
-
 getLeitos()
